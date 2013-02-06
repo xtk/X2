@@ -1,18 +1,17 @@
 goog.provide('X.Vector');
 
-goog.require('goog.vec.Vec3');
+goog.require('goog.math.Vec3');
 
 
-goog.exportSymbol('X.Vector.create', goog.vec.Vec3.createFloat32FromValues);
-goog.exportSymbol('X.Vector.clone', goog.vec.Vec3.cloneFloat32);
-goog.exportSymbol('X.Vector.add', goog.vec.Vec3.add);
-goog.exportSymbol('X.Vector.subtract', goog.vec.Vec3.subtract);
-goog.exportSymbol('X.Vector.negate', goog.vec.Vec3.negate);
-goog.exportSymbol('X.Vector.scale', goog.vec.Vec3.scale);
-goog.exportSymbol('X.Vector.magnitude', goog.vec.Vec3.magnitude);
-goog.exportSymbol('X.Vector.normalize', goog.vec.Vec3.normalize);
-goog.exportSymbol('X.Vector.dot', goog.vec.Vec3.dot);
-goog.exportSymbol('X.Vector.cross', goog.vec.Vec3.cross);
-goog.exportSymbol('X.Vector.distance', goog.vec.Vec3.distance);
-goog.exportSymbol('X.Vector.direction', goog.vec.Vec3.direction);
-goog.exportSymbol('X.Vector.lerp', goog.vec.Vec3.lerp);
+goog.exportSymbol('X.Vector', goog.math.Vec3);
+goog.exportSymbol('X.Vector.prototype.clone', goog.math.Vec3.prototype.clone);
+goog.exportSymbol('X.Vector.prototype.magnitude',goog.math.Vec3.prototype.magnitude);
+goog.exportSymbol('X.Vector.prototype.scale',goog.math.Vec3.prototype.scale);
+goog.exportSymbol('X.Vector.prototype.invert',goog.math.Vec3.prototype.invert);
+goog.exportSymbol('X.Vector.prototype.normalize',goog.math.Vec3.prototype.normalize);
+goog.exportSymbol('X.Vector.prototype.add',goog.math.Vec3.prototype.add);
+goog.exportSymbol('X.Vector.prototype.subtract',goog.math.Vec3.prototype.subtract);
+goog.exportSymbol('X.Vector.dot',goog.math.Vec3.dot);
+goog.exportSymbol('X.Vector.cross',goog.math.Vec3.cross);
+goog.exportSymbol('X.Vector.distance',goog.math.Vec3.distance);
+goog.exportSymbol('X.Vector.lerp',goog.math.Vec3.lerp);
