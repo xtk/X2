@@ -3,3 +3,6 @@
 # python
 *.pyc
 
+# compiled files
+utils/x2.js
+x2-deps.js
