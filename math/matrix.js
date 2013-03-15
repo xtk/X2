@@ -1,8 +1,8 @@
 // provides
-goog.provide('X.matrix');
+goog.provide('X.Matrix');
 
 // requires
-goog.require('X.vector');
+goog.require('X.Vector');
 goog.require('goog.vec.Mat4');
 
 
@@ -11,15 +11,15 @@ goog.require('goog.vec.Mat4');
  * the camera is 'looking at' the given center point.
  *
  * @param {!Float32Array} mat The matrix.
- * @param {!X.vector} eyePt The position of the eye point
+ * @param {!X.Vector} eyePt The position of the eye point
  *     (camera origin).
- * @param {!X.vector} centerPt The point to aim the camera at.
- * @param {!X.vector} worldUpVec The vector that identifies
+ * @param {!X.Vector} centerPt The point to aim the camera at.
+ * @param {!X.Vector} worldUpVec The vector that identifies
  *     the up direction for the camera.
  * @return {!Float32Array} return mat so that operations can be
  *     chained.
  */
-X.matrix.makeLookAt = function(mat, eyePt, centerPt, worldUpVec) {
+X.Matrix.makeLookAt = function(mat, eyePt, centerPt, worldUpVec) {
 
   // from Google Closure Library
   // http://closure-library.googlecode.com/svn/docs/closure_goog_vec_mat4.js.source.html#line1389
@@ -31,11 +31,11 @@ X.matrix.makeLookAt = function(mat, eyePt, centerPt, worldUpVec) {
   fwdVec.normalize();
 
   // Compute the side vector from the forward vector and the input up vector.
-  var sideVec = X.vector.cross(fwdVec, worldUpVec);
+  var sideVec = X.Vector.cross(fwdVec, worldUpVec);
   sideVec.normalize();
 
   // Now the up vector to form the orthonormal basis.
-  var upVec = X.vector.cross(sideVec, fwdVec);
+  var upVec = X.Vector.cross(sideVec, fwdVec);
   upVec.normalize();
 
   // Update the view matrix with the new orthonormal basis and position the
@@ -59,9 +59,9 @@ X.matrix.makeLookAt = function(mat, eyePt, centerPt, worldUpVec) {
  * @param {!number} x The x coordinate of the vector.
  * @param {!number} y The y coordinate of the vector.
  * @param {!number} z The z coordinate of the vector.
- * @return {!X.vector} The resulting vector.
+ * @return {!X.Vector} The resulting vector.
  */
-X.matrix.multiplyByVector = function(mat, x, y, z) {
+X.Matrix.multiplyByVector = function(mat, x, y, z) {
 
   // from Google Closure Library
   // http://closure-library.googlecode.com/svn/docs/closure_goog_vec_mat4.js.source.html#line1133
@@ -72,7 +72,7 @@ X.matrix.multiplyByVector = function(mat, x, y, z) {
   var _y = (x * mat[1] + y * mat[5] + z * mat[9] + mat[13]) * invw;
   var _z = (x * mat[2] + y * mat[6] + z * mat[10] + mat[14]) * invw;
 
-  return new X.vector(_x, _y, _z);
+  return new X.Vector(_x, _y, _z);
 
 };
 
@@ -85,7 +85,7 @@ X.matrix.multiplyByVector = function(mat, x, y, z) {
  * @param {!number} row2 The index of the second row.
  * @return {!Float32Array} The resulting matrix.
  */
-X.matrix.swapRows = function(mat, row1, row2) {
+X.Matrix.swapRows = function(mat, row1, row2) {
 
   var _buffer1 = new Float32Array(4);
   var _buffer2 = new Float32Array(4);
@@ -108,7 +108,7 @@ X.matrix.swapRows = function(mat, row1, row2) {
  * @param {!number} col2 The index of the second column.
  * @return {!Float32Array} The resulting matrix.
  */
-X.matrix.swapCols = function(mat, col1, col2) {
+X.Matrix.swapCols = function(mat, col1, col2) {
 
   var _buffer1 = new Float32Array(4);
   var _buffer2 = new Float32Array(4);
@@ -126,109 +126,109 @@ X.matrix.swapCols = function(mat, col1, col2) {
 /**
  * @see goog.vec.Mat4.createFloat32Identity
  */
-X.matrix.identity = goog.vec.Mat4.createFloat32Identity;
+X.Matrix.identity = goog.vec.Mat4.createFloat32Identity;
 
 
 /**
  * @see goog.vec.Mat4.cloneFloat32
  */
-X.matrix.clone = goog.vec.Mat4.cloneFloat32;
+X.Matrix.clone = goog.vec.Mat4.cloneFloat32;
 
 
 /**
  * @see goog.vec.Mat4.transpose
  */
-X.matrix.transpose = goog.vec.Mat4.transpose;
+X.Matrix.transpose = goog.vec.Mat4.transpose;
 
 
 /**
  * @see goog.vec.Mat4.determinant
  */
-X.matrix.determinant = goog.vec.Mat4.determinant;
+X.Matrix.determinant = goog.vec.Mat4.determinant;
 
 
 /**
  * @see goog.vec.Mat4.invert
  */
-X.matrix.invert = goog.vec.Mat4.invert;
+X.Matrix.invert = goog.vec.Mat4.invert;
 
 
 /**
  * @see goog.vec.Mat4.makePerspective
  */
-X.matrix.makePerspective = goog.vec.Mat4.makePerspective;
+X.Matrix.makePerspective = goog.vec.Mat4.makePerspective;
 
 
 /**
  * @see goog.vec.Mat4.makeFrustum
  */
-X.matrix.makeFrustum = goog.vec.Mat4.makeFrustum;
+X.Matrix.makeFrustum = goog.vec.Mat4.makeFrustum;
 
 
 /**
  * @see goog.vec.Mat4.makeOrtho
  */
-X.matrix.makeOrtho = goog.vec.Mat4.makeOrtho;
+X.Matrix.makeOrtho = goog.vec.Mat4.makeOrtho;
 
 
 /**
  * @see goog.vec.Mat4.multMat
  */
-X.matrix.multiply = goog.vec.Mat4.multMat;
+X.Matrix.multiply = goog.vec.Mat4.multMat;
 
 
 /**
  * @see goog.vec.Mat4.translate
  */
-X.matrix.translate = goog.vec.Mat4.translate;
+X.Matrix.translate = goog.vec.Mat4.translate;
 
 
 /**
  * @see goog.vec.Mat4.scale
  */
-X.matrix.scale = goog.vec.Mat4.scale;
+X.Matrix.scale = goog.vec.Mat4.scale;
 
 
 /**
  * @see goog.vec.Mat4.rotate
  */
-X.matrix.rotate = goog.vec.Mat4.rotate;
+X.Matrix.rotate = goog.vec.Mat4.rotate;
 
 
 /**
  * @see goog.vec.Mat4.rotateX
  */
-X.matrix.rotateX = goog.vec.Mat4.rotateX;
+X.Matrix.rotateX = goog.vec.Mat4.rotateX;
 
 
 /**
  * @see goog.vec.Mat4.rotateY
  */
-X.matrix.rotateY = goog.vec.Mat4.rotateY;
+X.Matrix.rotateY = goog.vec.Mat4.rotateY;
 
 
 /**
  * @see goog.vec.Mat4.rotateZ
  */
-X.matrix.rotateZ = goog.vec.Mat4.rotateZ;
+X.Matrix.rotateZ = goog.vec.Mat4.rotateZ;
 
 
-goog.exportSymbol('X.matrix.identity', X.matrix.identity);
-goog.exportSymbol('X.matrix.clone', X.matrix.clone);
-goog.exportSymbol('X.matrix.transpose', X.matrix.transpose);
-goog.exportSymbol('X.matrix.determinant', X.matrix.determinant);
-goog.exportSymbol('X.matrix.invert', X.matrix.invert);
-goog.exportSymbol('X.matrix.multiply', X.matrix.multiply);
-goog.exportSymbol('X.matrix.multiplyByVector', X.matrix.multiplyByVector);
-goog.exportSymbol('X.matrix.makePerspective', X.matrix.makePerspective);
-goog.exportSymbol('X.matrix.makeFrustum', X.matrix.makeFrustum);
-goog.exportSymbol('X.matrix.makeOrtho', X.matrix.makeOrtho);
-goog.exportSymbol('X.matrix.makeLookAt', X.matrix.makeLookAt);
-goog.exportSymbol('X.matrix.translate', X.matrix.translate);
-goog.exportSymbol('X.matrix.scale', X.matrix.scale);
-goog.exportSymbol('X.matrix.rotate', X.matrix.rotate);
-goog.exportSymbol('X.matrix.rotateX', X.matrix.rotateX);
-goog.exportSymbol('X.matrix.rotateY', X.matrix.rotateY);
-goog.exportSymbol('X.matrix.rotateZ', X.matrix.rotateZ);
-goog.exportSymbol('X.matrix.swapRows', X.matrix.swapRows);
-goog.exportSymbol('X.matrix.swapCols', X.matrix.swapCols);
+goog.exportSymbol('X.Matrix.identity', X.Matrix.identity);
+goog.exportSymbol('X.Matrix.clone', X.Matrix.clone);
+goog.exportSymbol('X.Matrix.transpose', X.Matrix.transpose);
+goog.exportSymbol('X.Matrix.determinant', X.Matrix.determinant);
+goog.exportSymbol('X.Matrix.invert', X.Matrix.invert);
+goog.exportSymbol('X.Matrix.multiply', X.Matrix.multiply);
+goog.exportSymbol('X.Matrix.multiplyByVector', X.Matrix.multiplyByVector);
+goog.exportSymbol('X.Matrix.makePerspective', X.Matrix.makePerspective);
+goog.exportSymbol('X.Matrix.makeFrustum', X.Matrix.makeFrustum);
+goog.exportSymbol('X.Matrix.makeOrtho', X.Matrix.makeOrtho);
+goog.exportSymbol('X.Matrix.makeLookAt', X.Matrix.makeLookAt);
+goog.exportSymbol('X.Matrix.translate', X.Matrix.translate);
+goog.exportSymbol('X.Matrix.scale', X.Matrix.scale);
+goog.exportSymbol('X.Matrix.rotate', X.Matrix.rotate);
+goog.exportSymbol('X.Matrix.rotateX', X.Matrix.rotateX);
+goog.exportSymbol('X.Matrix.rotateY', X.Matrix.rotateY);
+goog.exportSymbol('X.Matrix.rotateZ', X.Matrix.rotateZ);
+goog.exportSymbol('X.Matrix.swapRows', X.Matrix.swapRows);
+goog.exportSymbol('X.Matrix.swapCols', X.Matrix.swapCols);
